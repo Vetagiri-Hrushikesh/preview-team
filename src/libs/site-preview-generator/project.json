@@ -1,0 +1,9 @@
+{
+  "name": "site-preview-generator",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "src/libs/site-preview-generator/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project site-preview-generator --web",
+  "targets": {}
+}
