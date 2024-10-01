@@ -22,6 +22,11 @@ export interface RoleBasedAccess {
   admin: FeatureAccess;
 }
 
+export interface DispatchAction {
+  type: string;
+  payload?: any;
+}
+
 // Maps feature keys to their corresponding role-based access configurations.
 export type FeatureConfig = {
     [key in FeatureKey]: RoleBasedAccess;

@@ -13,8 +13,7 @@ export const GlobalProvider = ({ children, isAuthenticated, packageType, role }:
 
   const contextValue = useMemo(() => ({ state, dispatch }), [state, dispatch]);
 
-  return <GlobalContext.Provider value={{contextValue}}>{{children}}</GlobalContext.Provider>;
-
+  return <GlobalContext.Provider value={contextValue}>{children}</GlobalContext.Provider>;
 };
 
 export const useGlobalState = () => {
