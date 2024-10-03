@@ -8,24 +8,26 @@ import FeatureController from './FeatureController';
 /**
  * DisplayController Component
  * 
- * This component is responsible for displaying the set of features and controls available to the user.
- * It fetches allowed features and controls based on the user's `packageType` and `role` and renders them using
- * the `FeatureController` and `ControlController` components.
+ * This component is responsible for managing and displaying the features that the user is allowed to access
+ * based on their role (e.g., user or admin) and subscription package (e.g., basic or premium). 
+ * It fetches the allowed features when the user is authenticated, and updates the global state with these features.
  * 
- * @returns JSX.Element - A container rendering the feature and control components.
+ * The component relies on the global state for user data such as authentication status, role, and package type.
+ * 
+ * @returns JSX.Element - Renders the list of available features using the `FeatureController`.
  */
 const DisplayController: React.FC = () => {
   const { state, dispatch } = useGlobalState(); // Access global state and dispatch from context.
   const { isAuthenticated, role, packageType } = state; // Destructure necessary values from the state.
 
-  // Effect to fetch allowed features and controls based on user's package and role.
+  // Effect to fetch and update allowed features when the user is authenticated.
   useEffect(() => {
     if (!isAuthenticated) return;
 
-    // Get the features allowed for the current user.
+    // Fetch allowed features based on the user's package and role.
     const allowedFeatures = getAllowedFeatures(packageType, role);
     
-    // Update the state with the fetched features and controls.
+    // Dispatch action to update the global state with the available features.
     dispatch({ type: 'SET_AVAILABLE_FEATURES', payload: allowedFeatures });
 
   }, [isAuthenticated, role, packageType]); // Dependencies for re-running the effect.
@@ -35,10 +37,10 @@ const DisplayController: React.FC = () => {
     return null;
   }
 
-  // Render the feature and control controllers.
+  // Render the available features using the FeatureController component.
   return (
     <>
-      {/* Renders the set of available features */}
+      {/* Pass the features from global state to FeatureController for rendering */}
       <FeatureController features={state.features} />
     </>
   );

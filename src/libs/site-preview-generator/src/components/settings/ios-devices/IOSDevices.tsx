@@ -4,13 +4,21 @@ import { useGlobalState } from '../../../providers/GlobalContext';
 
 // Define an interface for the iOS device properties
 interface IOSDevice {
-  name: string;
-  screenSize: string;
+  name: string;        // The name of the iOS device.
+  screenSize: string;   // The screen size of the iOS device.
 }
 
-// Component to display iOS devices
+/**
+ * IOSDevices Component
+ * 
+ * This component displays a list of iOS devices for selection.
+ * It utilizes Material-UI's List component to present each device with its name and screen size.
+ * When a device is selected, it dispatches an action to update the global state with the selected device's name.
+ * 
+ * @returns JSX.Element - A list of selectable iOS devices.
+ */
 const IOSDevices: React.FC = () => {
-  const { dispatch } = useGlobalState();
+  const { dispatch } = useGlobalState(); // Access the global state dispatch function.
 
   // Array of iOS devices
   const iOSDevices: IOSDevice[] = [
@@ -29,7 +37,7 @@ const IOSDevices: React.FC = () => {
   return (
     <div>
       <List>
-        {iOSDevices.map((device, index) => (
+        {iOSDevices.map((device, index) => (    // Maps through the iOS devices array to create list items.
           <ListItem button key={index} onClick={() => handleSelectDevice(device.name)}>
             <ListItemText primary={device.name} secondary={`Screen Size: ${device.screenSize}`} />
           </ListItem>

@@ -12,6 +12,8 @@ import LivePreview from '../components/preview/LivePreview';
  * 
  * The component uses Material-UI's `Box` component to manage layout and styling,
  * ensuring a responsive and centered UI.
+ * @returns JSX.Element - The rendered layout of the site preview generator.
+
  */
 const SitePreviewGenerator = () => {
   return (
@@ -22,6 +24,7 @@ const SitePreviewGenerator = () => {
       </Box>
       {/* Right container for displaying the live preview of the current selections. */}
       <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+       {/* Renders the LivePreview component to show real-time updates */}
         <LivePreview />
       </Box>
     </Box>
